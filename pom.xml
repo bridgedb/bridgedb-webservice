@@ -6,17 +6,9 @@
   <name>BridgeDb Webservice</name>
   <version>3.0.14-SNAPSHOT</version>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.bridgedb</groupId>
-      <artifactId>org.bridgedb.server</artifactId>
-      <version>3.0.14-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.bridgedb</groupId>
-      <artifactId>org.bridgedb.webservice.bridgerest</artifactId>
-      <version>3.0.14-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
+  <inceptionYear>2006</inceptionYear>
+  <modules>
+    <module>org.bridgedb.server</module>
+  </modules>
 
 </project>
