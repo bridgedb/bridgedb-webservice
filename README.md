@@ -4,6 +4,9 @@
 
 # BridgeDb Webservice
 
+The BridgeDb Webservice provides a REST service to access identifier mapping data. It uses the [BridgeDb Java](https://github.com/bridgedb/bridgedb)
+library and RESTlet technologies to make the webservice available. There is a [BridgeDb Docker](https://github.com/bridgedb/docker) available for easy use.
+
 ## Compiling the webservice
 
 ## Running the webservice
