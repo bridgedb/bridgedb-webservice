@@ -3,5 +3,5 @@
 When using the IDMapperService then you may need to overwrite the default server URL.
 
 Use `-DserverURL=http://` to change the URL to the server. It defaults
-http://bridgedb.org/wiki/BridgeWebservice and must be overwritten for custom installations.
+https://webservice.bridgedb.org/ and must be overwritten for custom installations.
 
