@@ -39,6 +39,7 @@ public class Test {
 	private static IDMapper mapper;
 	private static Server server;
 	private static boolean configExists;
+	private static boolean test;
 	
 	@BeforeAll
 	public static void setUp() throws Exception {
