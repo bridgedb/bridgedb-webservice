@@ -59,14 +59,16 @@ public class IDMapperResource extends ServerResource {
 		);
 		
 		// Check for new HMDB identifier in request
-		if (requestedID.contains("HMDB") && requestedID.length()==11) {
-			String newId = requestedID.replace("0000", "00");
-			Map<String, Object> newIdAttributes = new HashMap<>();
-			newIdAttributes = getRequest().getAttributes();
-			// Put newId as value for key id in order to replace the wrong HMDB id
-			newIdAttributes.put("id", newId);
-			// Set attributes of the request to be the new map of attributes with the correct HMDB id
-			getRequest().setAttributes(newIdAttributes);
+		if(requestedID != null) {
+			if (requestedID.contains("HMDB") && requestedID.length()==11) {
+				String newId = requestedID.replace("0000", "00");
+				Map<String, Object> newIdAttributes = new HashMap<>();
+				newIdAttributes = getRequest().getAttributes();
+				// Put newId as value for key id in order to replace the wrong HMDB id
+				newIdAttributes.put("id", newId);
+				// Set attributes of the request to be the new map of attributes with the correct HMDB id
+				getRequest().setAttributes(newIdAttributes);
+			}
 		}
 		
 		initIDMappers();
