@@ -60,9 +60,11 @@ public class IDMapperResource extends ServerResource {
 		String requestedID = urlDecode(
 				(String) getRequest().getAttributes().get(IDMapperService.PAR_ID)
 		);
+		sysName = "" + sysName;
 		System.out.println("SysName " + sysName);
+		
 		System.out.println("requestedID " + requestedID);
-		System.out.println(sysName == "Ch");
+		System.out.println(sysName.toString() == "Ch");
 		System.out.println(requestedID.length()==11);
 		
 		if (sysName == "Ch" && requestedID.length()==11) {
