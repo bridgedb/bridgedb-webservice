@@ -76,8 +76,9 @@ public class IDMapperResource extends ServerResource {
 			// then put newId as value for key PAR_ID in order to replace the wrong HMDB identifier
 			newIdAttributes.put(IDMapperService.PAR_ID, newId);
 			// then set the attributes of the request to be the new map of attributes with the correct hmdb id
+			System.out.println("newIdAttributes: "+newIdAttributes);
 			getRequest().setAttributes(newIdAttributes);
-			System.out.println((String) getRequest().getAttributes().get(IDMapperService.PAR_ID));
+			System.out.println(urlDecode((String) getRequest().getAttributes().get(IDMapperService.PAR_ID)));
 		}
 		
 		initIDMappers();
