@@ -62,12 +62,12 @@ public class IDMapperResource extends ServerResource {
 		);
 		sysName = "" + sysName;
 		System.out.println("SysName " + sysName);
-		
+		System.out.println("requestedID.contains(hmdb): " + requestedID.contains("HMDB"));
 		System.out.println("requestedID " + requestedID);
-		System.out.println(sysName.toString() == "Ch");
+		System.out.println("sysName.toString() == Ch" + sysName.toString() == "Ch");
 		System.out.println(requestedID.length()==11);
 		
-		if (sysName == "Ch" && requestedID.length()==11) {
+		if (requestedID.contains("HMDB") && requestedID.length()==11) {
 			System.out.println("gets into if statement");
 			String newId = IDMapperService.PAR_ID.replace("0000", "00");
 			Map<String, Object> newIdAttributes = new HashMap<>();	
