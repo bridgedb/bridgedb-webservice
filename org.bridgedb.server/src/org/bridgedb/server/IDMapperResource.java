@@ -69,7 +69,7 @@ public class IDMapperResource extends ServerResource {
 		
 		if (requestedID.contains("HMDB") && requestedID.length()==11) {
 			System.out.println("gets into if statement");
-			String newId = IDMapperService.PAR_ID.replace("0000", "00");
+			String newId = requestedID.replace("0000", "00");
 			Map<String, Object> newIdAttributes = new HashMap<>();
 			System.out.println("newId: "+ newId);
 			// first instantiate newIdAttributes to be the map of all old attributes
