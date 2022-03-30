@@ -19,9 +19,11 @@ package org.bridgedb.server;
 import java.io.File;
 import java.io.IOException;
 import org.bridgedb.AttributeMapper;
+import org.bridgedb.DataSource;
 import org.bridgedb.IDMapper;
 import org.bridgedb.IDMapperCapabilities;
 import org.bridgedb.IDMapperException;
+import org.bridgedb.Xref;
 import org.bridgedb.bio.DataSourceTxt;
 import org.bridgedb.rdb.GdbProvider;
 import org.restlet.Application;
@@ -288,8 +290,26 @@ public class IDMapperService extends Application {
 		attrSearchRoute.extractQuery( PAR_TARGET_LIMIT, PAR_TARGET_LIMIT, true );
 		attrSearchRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
 		
-		Route attributesRoute = router.attach(URL_ATTRIBUTES, Attributes.class );
-		attributesRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
+		// ******************************************************************
+		DataSourceTxt.init();
+		Xref checkXref = new Xref(PAR_ID, DataSource.getExistingBySystemCode(PAR_SYSTEM));
+		String checkId = checkXref.getId();
+
+		if (checkXref.getDataSource() == DataSource.getExistingBySystemCode("Ch") && checkId.length() == 11) {
+			String newId = checkId.replace("0000", "00");
+			String newURLAttributes = "/{" + PAR_ORGANISM + "}/attributes/{" + PAR_SYSTEM + "}/{" + newId + "}";
+			Route attributesRoute = router.attach(newURLAttributes, Attributes.class );
+			attributesRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
+		}
+		else {
+			Route attributesRoute = router.attach(URL_ATTRIBUTES, Attributes.class );
+			attributesRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
+		}
+		// ********************************************************************
+		
+		
+		//Route attributesRoute = router.attach(URL_ATTRIBUTES, Attributes.class );
+		//attributesRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
 		
 		/* Extra methods */
 		// Register the route for backPageText

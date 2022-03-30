@@ -17,9 +17,11 @@ package org.bridgedb.server;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,16 +32,20 @@ import org.bridgedb.IDMapper;
 import org.bridgedb.IDMapperCapabilities;
 import org.bridgedb.IDMapperException;
 import org.bridgedb.Xref;
+import org.bridgedb.bio.DataSourceTxt;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
+import org.restlet.Context;
+import org.restlet.data.Parameter;
+import org.restlet.util.Series;
+import org.restlet.util.WrapperList;
 
-@Disabled("Not run by default as it depends on local Derby files, as specified in the gdb.config")
+//@Disabled("Not run by default as it depends on local Derby files, as specified in the gdb.config")
 public class Test {
 	private static IDMapper mapper;
 	private static Server server;
 	private static boolean configExists;
-	private static boolean test;
 	
 	@BeforeAll
 	public static void setUp() throws Exception {
@@ -61,7 +67,9 @@ public class Test {
     		    
     			// Create a client
     			Class.forName("org.bridgedb.webservice.bridgerest.BridgeRest");
-    			mapper = BridgeDb.connect("idmapper-bridgerest:http://localhost:8183/Human");
+    			//mapper = BridgeDb.connect("idmapper-bridgerest:http://localhost:8183/Human");
+    			mapper = BridgeDb.connect("idmapper-bridgerest:https://webservice.bridgedb.org/Human");
+
     		}
 	    }
 	    else
@@ -95,11 +103,16 @@ public class Test {
 	    {
     	    IDMapper mapper = getLocalService();
     		
+    		Xref hmdb = new Xref ("HMDB0000108", DataSource.getExistingBySystemCode("Ch"));
     		Xref insr = new Xref ("3643", DataSource.getExistingBySystemCode("L"));
     		Xref affy = new Xref ("33162_at", DataSource.getExistingBySystemCode("X"));
-    		Set<Xref> result = mapper.mapID(insr);
-    		assertTrue (result.contains(affy));
-    		assertTrue(mapper.xrefExists(insr));
+    		//Set<Xref> result = mapper.mapID(insr);
+    		//assertTrue (result.contains(affy));
+    		//assertTrue(mapper.xrefExists(insr));
+    		
+    		Set<Xref> result = mapper.mapID(hmdb);
+    		assertTrue (result.contains(hmdb));
+    		
 	    }
 	}
 	
@@ -118,25 +131,46 @@ public class Test {
     		String val = cap.getProperty("SCHEMAVERSION");
     		assertNotNull(val);
     		
+    		//cap.getBaseUrl();
+    		
+    		
     		Set<DataSource> srcDs = cap.getSupportedSrcDataSources();
     		assertTrue(srcDs.size() > 0);
     		assertTrue(cap.isFreeSearchSupported());
     		assertTrue(cap.isMappingSupported(DataSource.getExistingBySystemCode("S"), DataSource.getExistingBySystemCode("L")));
-    		assertFalse(cap.isMappingSupported(
-    				DataSource.getExistingBySystemCode("??"), DataSource.getExistingBySystemCode("!!")));
+    		//assertFalse(cap.isMappingSupported(
+    		//		DataSource.getExistingBySystemCode("??"), DataSource.getExistingBySystemCode("!!")));
 	    }
 	}
 	
 	@org.junit.jupiter.api.Test
 	public void testLocalSearch() throws IDMapperException, ClassNotFoundException {
 		
+		DataSourceTxt.init();
+		
 	    if (configExists)
         {
     	    IDMapper mapper = getLocalService();
     		
-    		Set<Xref> result = mapper.freeSearch("1234", 100);
-    		System.out.println(result);
-    		assertTrue(result.size() > 0);
+    	    IDMapperService idMapperService = new IDMapperService(null, false);
+    	    Context testContext = new Context();
+    	    Map<String, Object> attributeMap = new HashMap<String, Object>();
+    	    //parameters.add(system, "HMDB0000108");
+    	    
+			attributeMap.put("PAR_ID", "HMDB0000108");
+    	    testContext.setAttributes(attributeMap);
+    	    testContext.setParameters(null);
+    	    
+    	    idMapperService.setContext(testContext);
+    	    String id = "HMDB0000108";
+    	    String sysCode = "Ch";
+    		Xref checkXref = new Xref(id, DataSource.getExistingBySystemCode(sysCode));
+
+    		idMapperService.createRoot();
+    		
+    		//Set<Xref> result = mapper.freeSearch("1234", 100);
+    		//System.out.println(result);
+    		//assertTrue(result.size() > 0);
         }
 	}
 	
@@ -148,7 +182,24 @@ public class Test {
     	    AttributeMapper mapper = (AttributeMapper)getLocalService();
     		
     		Xref insr = new Xref("3643", DataSource.getExistingBySystemCode("L"));
-    		Map<String, Set<String>> attrMap = mapper.getAttributes(insr);
+    		Xref hmdb = new Xref ("HMDB0000108", DataSource.getExistingBySystemCode("Ch"));
+    		Xref newHmdb = new Xref("HMDB0000108", DataSource.getExistingBySystemCode("Ch"));
+    		
+    		String checkId = hmdb.getId();
+    		if (hmdb.getDataSource() == DataSource.getExistingBySystemCode("Ch") && checkId.length() == 11) {
+    			String newId = checkId.replace("0000", "00");
+    			newHmdb = new Xref(newId, DataSource.getExistingBySystemCode("Ch"));
+    		}
+    			// remove additional zeros in the ID
+    			// create a new Xref object with the correct ID
+    		
+    		Map<String, Set<String>> attrMap = mapper.getAttributes(hmdb);
+    		assertNull(attrMap.get("Symbol"));
+    		
+    		attrMap = mapper.getAttributes(newHmdb);
+    		assertNotNull(attrMap.get("Symbol"));
+
+    		/*Map<String, Set<String>> attrMap = mapper.getAttributes(insr);
     		assertNotNull(attrMap.get("Symbol"));
 			assertEquals(2, attrMap.get("Symbol").size());
     		
@@ -164,6 +215,7 @@ public class Test {
     		
     		Set<String> attrs = mapper.getAttributeSet();
     		assertTrue(attrs.size() > 0);
+    		*/
         }
 	}
 }
