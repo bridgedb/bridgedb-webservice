@@ -291,12 +291,13 @@ public class IDMapperService extends Application {
 		attrSearchRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
 		
 		// ******************************************************************
-		DataSourceTxt.init();
-		Xref checkXref = new Xref(PAR_ID, DataSource.getExistingBySystemCode(PAR_SYSTEM));
-		String checkId = checkXref.getId();
+		//DataSourceTxt.init();
+		//Xref checkXref = new Xref(PAR_ID, DataSource.getExistingBySystemCode(PAR_SYSTEM));
+		//String checkId = checkXref.getId();
 
-		if (checkXref.getDataSource() == DataSource.getExistingBySystemCode("Ch") && checkId.length() == 11) {
-			String newId = checkId.replace("0000", "00");
+		//if (checkXref.getDataSource() == DataSource.getExistingBySystemCode("Ch") && checkId.length() == 11) {
+		if (PAR_SYSTEM == "Ch" && PAR_ID.length() == 11) {
+			String newId = PAR_ID.replace("0000", "00");
 			String newURLAttributes = "/{" + PAR_ORGANISM + "}/attributes/{" + PAR_SYSTEM + "}/{" + newId + "}";
 			Route attributesRoute = router.attach(newURLAttributes, Attributes.class );
 			attributesRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
