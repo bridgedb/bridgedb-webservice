@@ -18,6 +18,8 @@ package org.bridgedb.server;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bridgedb.DataSource;
 import org.bridgedb.IDMapperStack;
@@ -52,6 +54,30 @@ public class IDMapperResource extends ServerResource {
 		orgName = urlDecode(
 				(String) getRequest().getAttributes().get(IDMapperService.PAR_ORGANISM)
 		);
+		String sysName = urlDecode(
+				(String) getRequest().getAttributes().get(IDMapperService.PAR_SYSTEM)
+		); 
+		String requestedID = urlDecode(
+				(String) getRequest().getAttributes().get(IDMapperService.PAR_ID)
+		);
+		System.out.println("SysName " + sysName);
+		System.out.println("requestedID " + requestedID);
+		System.out.println(sysName == "Ch");
+		System.out.println(requestedID.length()==11);
+		
+		if (sysName == "Ch" && requestedID.length()==11) {
+			System.out.println("gets into if statement");
+			String newId = IDMapperService.PAR_ID.replace("0000", "00");
+			Map<String, Object> newIdAttributes = new HashMap<>();	
+			// first instantiate newIdAttributes to be the map of all old attributes
+			newIdAttributes = getRequest().getAttributes();
+			// then put newId as value for key PAR_ID in order to replace the wrong HMDB identifier
+			newIdAttributes.put(IDMapperService.PAR_ID, newId);
+			// then set the attributes of the request to be the new map of attributes with the correct hmdb id
+			getRequest().setAttributes(newIdAttributes);
+			System.out.println((String) getRequest().getAttributes().get(IDMapperService.PAR_ID));
+		}
+		
 		initIDMappers();
 		} catch(UnsupportedEncodingException e) {
 			throw new ResourceException(e);
