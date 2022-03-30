@@ -296,13 +296,23 @@ public class IDMapperService extends Application {
 		//String checkId = checkXref.getId();
 
 		//if (checkXref.getDataSource() == DataSource.getExistingBySystemCode("Ch") && checkId.length() == 11) {
+		System.out.println("REACHES THIS POINT");
+		System.out.println("FIRST CHECK");
+		System.out.println(PAR_SYSTEM == "Ch");
+		System.out.println("SECOND CHECK");
+		System.out.println(PAR_ID.length() == 11);
 		if (PAR_SYSTEM == "Ch" && PAR_ID.length() == 11) {
+			System.out.println("REACHES INTO THE IF STATEMENT WITH PAR_ID: " + PAR_ID);
 			String newId = PAR_ID.replace("0000", "00");
+			System.out.println("REACHES THIS WITH NEWID: " + newId);
 			String newURLAttributes = "/{" + PAR_ORGANISM + "}/attributes/{" + PAR_SYSTEM + "}/{" + newId + "}";
 			Route attributesRoute = router.attach(newURLAttributes, Attributes.class );
+			System.out.println("ATTACHED NEW ATTRIBUTES: " + newId);
 			attributesRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
+			System.out.println("AT THE END OF THE IF STATEMENT: " + newId);
 		}
 		else {
+			System.out.println("REACHES INTO THE ELSE STATEMENT WITH PAR_ID: " + PAR_ID);
 			Route attributesRoute = router.attach(URL_ATTRIBUTES, Attributes.class );
 			attributesRoute.extractQuery( PAR_TARGET_ATTR_NAME, PAR_TARGET_ATTR_NAME, true );
 		}
