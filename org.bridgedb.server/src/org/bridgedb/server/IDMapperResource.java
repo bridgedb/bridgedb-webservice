@@ -54,32 +54,19 @@ public class IDMapperResource extends ServerResource {
 		orgName = urlDecode(
 				(String) getRequest().getAttributes().get(IDMapperService.PAR_ORGANISM)
 		);
-		String sysName = urlDecode(
-				(String) getRequest().getAttributes().get(IDMapperService.PAR_SYSTEM)
-		); 
 		String requestedID = urlDecode(
 				(String) getRequest().getAttributes().get(IDMapperService.PAR_ID)
 		);
-		sysName = "" + sysName;
-		System.out.println("SysName " + sysName);
-		System.out.println("requestedID.contains(hmdb): " + requestedID.contains("HMDB"));
-		System.out.println("requestedID " + requestedID);
-		System.out.println("sysName.toString() == Ch" + sysName.toString() == "Ch");
-		System.out.println(requestedID.length()==11);
 		
+		// Check for new HMDB identifier in request
 		if (requestedID.contains("HMDB") && requestedID.length()==11) {
-			System.out.println("gets into if statement");
 			String newId = requestedID.replace("0000", "00");
 			Map<String, Object> newIdAttributes = new HashMap<>();
-			System.out.println("newId: "+ newId);
-			// first instantiate newIdAttributes to be the map of all old attributes
 			newIdAttributes = getRequest().getAttributes();
-			// then put newId as value for key PAR_ID in order to replace the wrong HMDB identifier
+			// Put newId as value for key id in order to replace the wrong HMDB id
 			newIdAttributes.put("id", newId);
-			// then set the attributes of the request to be the new map of attributes with the correct hmdb id
-			System.out.println("newIdAttributes: "+newIdAttributes);
+			// Set attributes of the request to be the new map of attributes with the correct HMDB id
 			getRequest().setAttributes(newIdAttributes);
-			System.out.println(urlDecode((String) getRequest().getAttributes().get(IDMapperService.PAR_ID)));
 		}
 		
 		initIDMappers();
