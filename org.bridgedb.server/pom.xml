@@ -4,11 +4,13 @@
     <artifactId>org.bridgedb.server</artifactId>
     <name>BridgeDb REST Server</name>
     <description>Restful service</description>
+
     <parent>
         <artifactId>bridgedb-webservice</artifactId>
         <groupId>org.bridgedb</groupId>
         <version>3.0.14-SNAPSHOT</version>
     </parent>
+
     <build>
         <directory>target</directory>
         <outputDirectory>target/classes</outputDirectory>
@@ -30,7 +32,7 @@
         <plugins>
         <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2-beta-5</version>
+                <version>3.3.0</version>
                 <configuration>
                    <archive>
                         <manifest>
@@ -41,18 +43,19 @@
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <finalName>bridgedbServer</finalName>
-                    
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
     <repositories>
         <repository>
             <id>maven-restlet</id>
             <name>Public online Restlet repository</name>
-            <url>http://maven.restlet.org</url>
+            <url>https://maven.restlet.org</url>
         </repository>
     </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.bridgedb</groupId>
@@ -112,5 +115,15 @@
             <version>5.2.0</version>
             <scope>test</scope>
         </dependency>       
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
     </dependencies>
 </project>

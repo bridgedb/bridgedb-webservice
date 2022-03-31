@@ -24,6 +24,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <derby.version>10.14.2.0</derby.version>
     <commons-cli.version>1.2</commons-cli.version>
     <junit5.excludeGroups></junit5.excludeGroups>
     <junit5.groups />
