@@ -60,7 +60,7 @@ public class IDMapperResource extends ServerResource {
 		
 		// Check for new HMDB identifier in request
 		if(requestedID != null) {
-			if (requestedID.contains("HMDB") && requestedID.length()==11) {
+			if (requestedID.startsWith("HMDB") && requestedID.length()==11) {
 				String newId = requestedID.replace("0000", "00");
 				Map<String, Object> newIdAttributes = new HashMap<>();
 				newIdAttributes = getRequest().getAttributes();
