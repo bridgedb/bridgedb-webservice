@@ -41,7 +41,7 @@ import org.restlet.data.Parameter;
 import org.restlet.util.Series;
 import org.restlet.util.WrapperList;
 
-//@Disabled("Not run by default as it depends on local Derby files, as specified in the gdb.config")
+@Disabled("Not run by default as it depends on local Derby files, as specified in the gdb.config")
 public class Test {
 	private static IDMapper mapper;
 	private static Server server;
