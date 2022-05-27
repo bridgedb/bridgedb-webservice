@@ -12,7 +12,7 @@ library and RESTlet technologies to make the webservice available. There is a [B
 A jar with all dependencies is created with the following command:
 
 ```shell
-mvn clean install
+mvn clean package
 ```
 
 ### Downloading BridgeDb ID mapping databases
@@ -23,7 +23,7 @@ The location of the downloaded files is needed for the below described `gdb.conf
 ### Installing the Derby libraries
 
 Because when embedding Derby in the BridgeDb Server jar makes them impossible to find,
-you still need them locally. Copy the Derby jars (derby.jar and derbyclient.jar) to this
+you still need them locally. Copy the Derby jars (derbyclient.jar) to this
 folder.
 
 ### Starting the webservice
