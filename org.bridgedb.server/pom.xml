@@ -42,7 +42,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>bridgedbServer</finalName>
+                    <finalName>bridgedbServer-${project.parent.version}</finalName>
                 </configuration>
             </plugin>
         </plugins>
@@ -119,6 +119,11 @@
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
             <version>${derby.version}</version>
         </dependency>
     </dependencies>

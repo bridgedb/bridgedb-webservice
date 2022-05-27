@@ -3,3 +3,5 @@
 **/.classpath
 **/.project
 gdb.config
+derby.log
+derby*.jar

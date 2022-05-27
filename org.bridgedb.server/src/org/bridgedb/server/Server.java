@@ -62,8 +62,9 @@ public class Server
 		}
 	}
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws Exception
 	{
+		Class.forName ("org.bridgedb.rdb.IDMapperRdb");
 		int port = 8183; // default port
 		boolean transitive = false;
 		File configFile = null;

@@ -20,19 +20,31 @@ mvn clean install
 BridgeDb ID mapping databases are found on [this website](https://bridgedb.github.io/data/gene_database/).
 The location of the downloaded files is needed for the below described `gdb.config` file.
 
+### Installing the Derby libraries
+
+Because when embedding Derby in the BridgeDb Server jar makes them impossible to find,
+you still need them locally. Copy the Derby jars (derby.jar and derbyclient.jar) to this
+folder.
+
 ### Starting the webservice
 
 The service can be run with (only HTTP is supported):
 
 ```shell
-java -jar org.bridgedb.server/target/bridgedbServer-jar-with-dependencies.jar
+sh startServer.sh
+```
+
+Run the server at a different port with:
+
+```shell
+sh startServer.sh -p 8082
 ```
 
 This will look for a local `gdb.config` file that has a tab-separated values content, linking species
 to BridgeDb Derby files, for example:
 
 ```
-Human   /path/to/databases/Hs_Derby_Ensembl_91.bridge
+Human   /path/to/databases/Hs_Derby_Ensembl_105.bridge
 ```
 
 ### Testing the webservice
