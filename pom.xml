@@ -24,6 +24,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <bridgedb.version>3.0.14</bridgedb.version>
     <derby.version>10.15.2.0</derby.version>
     <commons-cli.version>1.5.0</commons-cli.version>
     <junit-platform-surefire-provider>1.3.2</junit-platform-surefire-provider>

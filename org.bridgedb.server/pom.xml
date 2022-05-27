@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.bridgedb</groupId>
             <artifactId>org.bridgedb</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${bridgedb.version}</version>
         </dependency>
         <dependency>
             <groupId>org.restlet.jee</groupId>
@@ -81,17 +81,17 @@
           <dependency>
             <groupId>org.bridgedb</groupId>
             <artifactId>org.bridgedb.bio</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${bridgedb.version}</version>
         </dependency>
          <dependency>
             <groupId>org.bridgedb</groupId>
             <artifactId>org.bridgedb.rdb</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${bridgedb.version}</version>
         </dependency>
         <dependency>
             <groupId>org.bridgedb.webservice</groupId>
             <artifactId>org.bridgedb.webservice.bridgerest</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${bridgedb.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-cli</groupId>
