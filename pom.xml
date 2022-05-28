@@ -98,26 +98,6 @@
             </execution>
         </executions>
     </plugin>
-    </plugins>
-  </build>
-
-  <profiles>
-    <profile>
-      <id>release</id>
-      <!-- use as: mvn release:prepare -Prelease-->
-      <distributionManagement>
-        <!-- Maven Central - see http://central.sonatype.org/pages/apache-maven.html -->
-        <repository>
-          <id>ossrh</id>
-          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <snapshotRepository>
-          <id>ossrh</id>
-          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-      </distributionManagement>
-      <build>
-        <plugins>
           <plugin>
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -160,8 +140,18 @@
             </executions>
           </plugin>
         </plugins>
-      </build>
-    </profile>
-  </profiles>
+    </build>
+
+      <distributionManagement>
+        <!-- Maven Central - see http://central.sonatype.org/pages/apache-maven.html -->
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+      </distributionManagement>
 
 </project>
