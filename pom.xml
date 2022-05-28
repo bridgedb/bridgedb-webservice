@@ -8,8 +8,78 @@
   <version>3.0.14</version>
   <packaging>pom</packaging>
 
-  <url>http://www.bridgedb.org/</url>  
+  <description>
+    BridgeDb Webservice is the BridgeDb framework-based Webservice
+    as running on https://webservice.bridgedb.org/.
+  </description>
+
+  <scm>
+    <connection>scm:git:https://github.com/bridgedb/bridgedb-webservice.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/bridgedb/bridgedb-webservice.git</developerConnection>
+    <url>https://github.com/bridgedb/bridgedb-webservice/</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <url>https://bridgedb.github.io/</url>
   <inceptionYear>2006</inceptionYear>
+
+        <developers>
+<!-- Listed alphabetical by surname
+
+        <developer>
+                <id>githubusername</id>
+                <email>usually@omitted.com</email>
+                <name>Full Name</name>
+                <url>http://orcid.org/0000-... or https://github.com/username</url>
+        </developer>
+-->
+        <developer>
+                <id>Christian-B</id>
+                <name>Christian Y. Brenninkmeijer</name>
+                <url>http://orcid.org/0000-0002-2937-7819</url>
+        </developer>
+        <developer>
+                <id>amarillion</id>
+                <name>Martijn van Iersel</name>
+                <url>http://orcid.org/0000-0002-5877-4338</url>
+        </developer>
+        <developer>
+                <id>bturner</id>
+        </developer>
+        <developer>
+                <id>rodche</id>
+        </developer>
+        <developer>
+                <id>mkutmon</id>
+                <name>Martina Kutmon</name>
+                <url>http://orcid.org/0000-0002-7699-8191</url>
+        </developer>
+        <developer>
+                <id>nunogit</id>
+                <name>Nuno Nunes</name>
+        </developer>
+        <developer>
+                <id>stain</id>
+                <email>stain@apache.org</email>
+                <name>Stian Soiland-Reyes</name>
+                <url>http://orcid.org/0000-0001-9842-9718</url>
+        </developer>
+        <developer>
+                <id>egonw</id>
+                <email>egon.willighagen@gmail.com</email>
+                <name>Egon Willighagen</name>
+                <url>http://orcid.org/0000-0001-7542-0286</url>
+        </developer>
+        <developer>
+                <id>hbasaric</id>
+                <name>Helena Basaric</name>
+        </developer>
+        </developers>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/bridgedb/bridgedb-webservice/issues</url>
+  </issueManagement>
 
   <licenses>
     <license>
