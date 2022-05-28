@@ -5,7 +5,7 @@
   <groupId>org.bridgedb</groupId>
   <artifactId>bridgedb-webservice</artifactId>
   <name>BridgeDb Webservice</name>
-  <version>3.0.14-SNAPSHOT</version>
+  <version>3.0.14</version>
   <packaging>pom</packaging>
 
   <url>http://www.bridgedb.org/</url>  
