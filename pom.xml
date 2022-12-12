@@ -5,7 +5,7 @@
   <groupId>org.bridgedb</groupId>
   <artifactId>bridgedb-webservice</artifactId>
   <name>BridgeDb Webservice</name>
-  <version>3.0.17</version>
+  <version>3.0.18</version>
   <packaging>pom</packaging>
 
   <description>
